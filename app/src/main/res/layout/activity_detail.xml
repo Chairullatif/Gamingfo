@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary300"
+    tools:context=".detail.DetailActivity">
+
+    <ImageView
+        android:id="@+id/iv_background_header"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:id="@+id/btn_back"
+        style="@style/ButtonBackStyle"
+        android:background="@drawable/bg_btn_back"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_left"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardCornerRadius="16dp"
+        android:layout_marginTop="-16dp"
+        android:backgroundTint="@color/primary300"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_background_header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Txt.Bold24"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                tools:text="Asassin Creed - Spiderman Home Coming"
+                android:textColor="@color/white" />
+
+            <TextView
+                style="@style/Txt.Bold24"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                tools:text="4.9"
+                android:textColor="@color/colorWarning" />
+
+            <TextView
+                style="@style/Txt.Regular14"
+                android:layout_width="match_parent"
+                tools:text="Released Date: 2011-04-18"
+                android:textColor="@color/colorNeutral100" />
+
+            <TextView
+                style="@style/Txt.Regular16"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                tools:text="Portal 2 is a first-person puzzle game developed by Valve Corporation and released on April 19, 2011 on Steam, PS3 and Xbox 360. It was published by Valve Corporation in digital form and by Electronic Arts in physical form. </p>\n<p>Its plot directly follows the first game&#39;s, taking place in the Half-Life universe. You play as Chell, a test subject in a research facility formerly ran by the company Aperture Science, but taken over by an evil AI that turned upon its creators, GladOS. After defeating GladOS at the end of the first game but failing to escape the facility, Chell is woken up from a stasis chamber by an AI personality core, Wheatley, as the unkempt complex is falling apart. As the two attempt to navigate through the ruins and escape, they stumble upon GladOS, and accidentally re-activate her...</p>\n<p>Portal 2&#39;s core mechanics are very similar to the first game&#39;s ; the player must make their way through several test chambers which involve puzzles. For this purpose, they possess a Portal Gun, a weapon capable of creating teleportation portals on white surfaces. This seemingly simple mechanic and its subtleties coupled with the many different puzzle elements that can appear in puzzles allows the game to be easy to start playing, yet still feature profound gameplay. The sequel adds several new puzzle elements, such as gel that can render surfaces bouncy or allow you to accelerate when running on them.</p>\n<p>The game is often praised for its gameplay, its memorable dialogue and writing and its aesthetic. Both games in the series are responsible for inspiring most puzzle games succeeding them, particularly first-person puzzle games. The series, its characters and even its items such as the portal gun and the companion cube have become a cultural icon within gaming communities.</p>\n<p>Portal 2 also features a co-op mode where two players take on the roles of robots being led through tests by GladOS, as well as an in-depth level editor"
+                android:textColor="@color/colorNeutral100" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?attr/floatingActionButtonSmallStyle"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:tint="@null"
+        android:src="@drawable/ic_bookmark_inactive"
+        android:backgroundTint="@color/primary100"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
