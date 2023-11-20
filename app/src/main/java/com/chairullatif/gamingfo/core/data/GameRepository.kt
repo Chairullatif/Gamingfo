@@ -1,0 +1,68 @@
+package com.chairullatif.gamingfo.core.data
+
+import com.chairullatif.gamingfo.core.data.source.local.LocalDataSource
+import com.chairullatif.gamingfo.core.data.source.remote.RemoteDataSource
+import com.chairullatif.gamingfo.core.data.source.remote.network.ApiResponse
+import com.chairullatif.gamingfo.core.data.source.remote.response.GameResponse
+import com.chairullatif.gamingfo.core.domain.model.GameModel
+import com.chairullatif.gamingfo.core.domain.repository.IGameRepository
+import com.chairullatif.gamingfo.core.utils.AppExecutors
+import com.chairullatif.gamingfo.core.utils.DataMapper
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+
+class GameRepository private constructor(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
+) : IGameRepository {
+
+    companion object {
+        @Volatile
+        private var instance: GameRepository? = null
+
+        fun getInstance(
+            remoteData: RemoteDataSource,
+            localData: LocalDataSource,
+            appExecutors: AppExecutors
+        ): GameRepository =
+            instance ?: synchronized(this) {
+                instance ?: GameRepository(remoteData, localData, appExecutors)
+            }
+    }
+
+    override fun getAllGames(): Flowable<Resource<List<GameModel>>> =
+        object : NetworkBoundResource<List<GameModel>, List<GameResponse>>() {
+            override fun loadFromDB(): Flowable<List<GameModel>> {
+                return localDataSource.getAllGames().map { DataMapper.mapEntitiesToDomain(it) }
+            }
+
+            override fun createCall(): Flowable<ApiResponse<List<GameResponse>>> {
+                return remoteDataSource.getListGame()
+            }
+
+            override fun saveCallResult(data: List<GameResponse>) {
+                val gameList = DataMapper.mapResponseToEntities(data)
+                localDataSource.insertGame(gameList)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+            }
+
+            override fun shouldFetch(data: List<GameModel>?): Boolean {
+                return data.isNullOrEmpty()
+            }
+
+        }.asFlowable()
+
+    override fun getFavoriteGames(): Flowable<List<GameModel>> {
+        return localDataSource.getFavoriteGames().map { DataMapper.mapEntitiesToDomain(it) }
+    }
+
+    override fun setFavoriteGame(game: GameModel, newState: Boolean) {
+        val gameEntity = DataMapper.mapDomainToEntity(game)
+        appExecutors.diskIO().execute { localDataSource.updateFavorite(gameEntity, newState) }
+    }
+
+}
