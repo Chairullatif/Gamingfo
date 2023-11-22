@@ -5,6 +5,7 @@ import android.os.Build.VERSION.SDK_INT
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.text.Html
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.chairullatif.gamingfo.R
@@ -32,6 +33,10 @@ class DetailActivity : AppCompatActivity() {
         if (detailGame != null) {
             val factory = ViewModelFactory.getInstance(this)
             detailGameViewModel = ViewModelProvider(this, factory)[DetailGameViewModel::class.java]
+
+            detailGameViewModel.getDetailGame(detailGame.gameId).observe(this) {
+                binding.tvDescription.text = Html.fromHtml(it.description, 0)
+            }
 
             var statusFavorite = detailGame.isFavorite
             setStatusFavorite(statusFavorite)

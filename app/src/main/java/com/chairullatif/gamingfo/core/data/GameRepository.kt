@@ -65,4 +65,7 @@ class GameRepository private constructor(
         appExecutors.diskIO().execute { localDataSource.updateFavorite(gameEntity, newState) }
     }
 
+    override fun getDetailGame(idGame: Int): Flowable<GameModel> {
+        return remoteDataSource.getDetailGame(idGame).map { DataMapper.mapResponseToDomain(it)}
+    }
 }

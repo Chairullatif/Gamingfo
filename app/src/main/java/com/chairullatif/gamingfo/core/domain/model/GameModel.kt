@@ -12,5 +12,6 @@ data class GameModel(
      val rating: Double,
      val ratingsCount: Int,
      val suggestionsCount: Int,
-     val isFavorite: Boolean
+     val description: String,
+     val isFavorite: Boolean,
 ) : Parcelable

@@ -10,4 +10,5 @@ data class GameResponse(
     @SerializedName("rating"             ) var rating           : Double,
     @SerializedName("ratings_count"      ) var ratingsCount     : Int,
     @SerializedName("suggestions_count"  ) var suggestionsCount : Int,
+    @SerializedName("description"        ) var description      : String,
 )

@@ -45,4 +45,24 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
         return resultData.toFlowable(BackpressureStrategy.BUFFER)
     }
+
+    @SuppressLint("CheckResult")
+    fun getDetailGame(idGame: Int): Flowable<GameResponse> {
+        val resultData = PublishSubject.create<GameResponse>()
+        val key = BuildConfig.RAWG_KEY
+
+        val client = apiService.getDetailGame(idGame, key)
+
+        client
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { gameResponse ->
+                    resultData.onNext(gameResponse)
+                }, { error ->
+                    Log.e("RemoteDataSource", error.toString())
+                })
+
+        return resultData.toFlowable(BackpressureStrategy.BUFFER)
+    }
 }

@@ -29,6 +29,7 @@ object DataMapper {
                 it.rating,
                 it.ratingsCount,
                 it.suggestionsCount,
+                "",
                 it.isFavorite
             )
         }
@@ -44,4 +45,18 @@ object DataMapper {
             input.suggestionsCount,
             input.isFavorite
         )
+
+    fun mapResponseToDomain(input: GameResponse) =
+        GameModel(
+            input.id,
+            input.name,
+            input.released,
+            input.backgroundImage,
+            input.rating,
+            input.ratingsCount,
+            input.suggestionsCount,
+            input.description,
+            false
+        )
+
 }

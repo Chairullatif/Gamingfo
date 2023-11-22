@@ -8,4 +8,5 @@ interface GameUseCase {
     fun getAllGame(): Flowable<Resource<List<GameModel>>>
     fun getFavoriteGame(): Flowable<List<GameModel>>
     fun setFavoriteGame(tourism: GameModel, state: Boolean)
+    fun getDetailGame(idGame: Int): Flowable<GameModel>
 }
