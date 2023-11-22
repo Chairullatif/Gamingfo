@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.chairullatif.gamingfo.R
+import com.chairullatif.gamingfo.core.R
+import com.chairullatif.gamingfo.core.databinding.ItemGameBinding
 import com.chairullatif.gamingfo.core.domain.model.GameModel
-import com.chairullatif.gamingfo.databinding.ItemGameBinding
 import java.util.ArrayList
 
 class GameAdapter : RecyclerView.Adapter<GameAdapter.ListViewHolder>() {

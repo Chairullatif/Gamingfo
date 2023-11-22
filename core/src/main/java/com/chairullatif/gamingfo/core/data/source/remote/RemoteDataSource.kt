@@ -2,7 +2,7 @@ package com.chairullatif.gamingfo.core.data.source.remote
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.chairullatif.gamingfo.BuildConfig
+import com.chairullatif.gamingfo.core.BuildConfig
 import com.chairullatif.gamingfo.core.data.source.remote.network.ApiResponse
 import com.chairullatif.gamingfo.core.data.source.remote.network.ApiService
 import com.chairullatif.gamingfo.core.data.source.remote.response.GameResponse

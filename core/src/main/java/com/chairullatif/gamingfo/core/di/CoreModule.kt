@@ -1,8 +1,7 @@
 package com.chairullatif.gamingfo.core.di
 
 import androidx.room.Room
-import com.chairullatif.gamingfo.BuildConfig
-import com.chairullatif.gamingfo.core.data.GameRepository
+import com.chairullatif.gamingfo.core.BuildConfig
 import com.chairullatif.gamingfo.core.data.source.local.LocalDataSource
 import com.chairullatif.gamingfo.core.data.source.local.room.GameDatabase
 import com.chairullatif.gamingfo.core.data.source.remote.RemoteDataSource
@@ -51,5 +50,11 @@ val repositoryModule = module {
     single { LocalDataSource(get()) }
     single { RemoteDataSource(get()) }
     factory { AppExecutors() }
-    single<IGameRepository> { GameRepository(get(), get(), get()) }
+    single<IGameRepository> {
+        com.chairullatif.gamingfo.core.data.GameRepository(
+            get(),
+            get(),
+            get()
+        )
+    }
 }

@@ -2,7 +2,6 @@ package com.chairullatif.gamingfo.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.toLiveData
 import com.chairullatif.gamingfo.core.data.Resource
 import com.chairullatif.gamingfo.core.domain.model.GameModel
 import com.chairullatif.gamingfo.core.domain.usecase.GameUseCase
@@ -12,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 
 class HomeViewModel(private val gameUseCase: GameUseCase) : ViewModel() {
 
-    private val _listGame = MutableLiveData<Resource<List<GameModel>>>()
+    private val _listGame = MutableLiveData<Resource<List<GameModel>>?>()
     val listGame = _listGame
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()

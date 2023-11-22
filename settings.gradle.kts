@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Gamingfo"
 include(":app")
- 
+include(":core")
