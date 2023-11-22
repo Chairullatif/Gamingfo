@@ -1,24 +1,17 @@
 plugins {
-    id("com.android.application")
+    id("com.android.dynamic-feature")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
 }
-
 apply(from = "../shared_dependencies.gradle")
 android {
-    namespace = "com.chairullatif.gamingfo"
+    namespace = "com.chairullatif.gamingfo.favorite"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.chairullatif.gamingfo"
         minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -30,6 +23,7 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -41,12 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
+    implementation(project(":app"))
     implementation(project(":core"))
-    implementation(fileTree("libs") {
-        include("*.jar")
-    })
 }

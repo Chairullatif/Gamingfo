@@ -54,7 +54,6 @@ class DetailActivity : AppCompatActivity() {
                 tvTitle.text = detailGame.name
                 tvRelease.text = "Release: " + detailGame.released
                 tvRating.text = "⭐" + detailGame.rating.toString()
-//                tvDescription.text = detailGame.description
 
                 btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
             }

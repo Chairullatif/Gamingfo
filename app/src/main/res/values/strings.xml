@@ -2,5 +2,6 @@
     <string name="app_name">Gamingfo</string>
 
     <string name="something_wrong">There is something wrong</string>
+    <string name="title_favorite">Favorite</string>
 
 </resources>

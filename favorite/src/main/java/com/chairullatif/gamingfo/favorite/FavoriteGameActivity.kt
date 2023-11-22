@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chairullatif.gamingfo.core.ui.GameAdapter
-import com.chairullatif.gamingfo.databinding.ActivityFavoriteGameBinding
 import com.chairullatif.gamingfo.detail.DetailActivity
+import com.chairullatif.gamingfo.favorite.databinding.ActivityFavoriteGameBinding
+import com.chairullatif.gamingfo.favorite.di.favoriteModule
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoriteGameActivity : AppCompatActivity() {
     
@@ -20,6 +22,8 @@ class FavoriteGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadKoinModules(favoriteModule)
 
         initView()
 

@@ -1,6 +1,7 @@
 package com.chairullatif.gamingfo.home
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,7 +12,6 @@ import com.chairullatif.gamingfo.core.data.Resource
 import com.chairullatif.gamingfo.core.ui.GameAdapter
 import com.chairullatif.gamingfo.databinding.ActivityHomeBinding
 import com.chairullatif.gamingfo.detail.DetailActivity
-import com.chairullatif.gamingfo.favorite.FavoriteGameActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -70,8 +70,8 @@ class HomeActivity : AppCompatActivity() {
 
         binding.apply {
             ivFavorite.setOnClickListener {
-                val intent = Intent(this@HomeActivity, FavoriteGameActivity::class.java)
-                startActivity(intent)
+                val uri = Uri.parse("gamingfo://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
     }
