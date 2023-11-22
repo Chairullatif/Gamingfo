@@ -12,16 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
-class RemoteDataSource private constructor(private val apiService: ApiService) {
-    companion object {
-        @Volatile
-        private var instance: RemoteDataSource? = null
-
-        fun getInstance(service: ApiService): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(service)
-            }
-    }
+class RemoteDataSource(private val apiService: ApiService) {
 
     @SuppressLint("CheckResult")
     fun getListGame(): Flowable<ApiResponse<List<GameResponse>>> {

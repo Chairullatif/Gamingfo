@@ -12,25 +12,11 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class GameRepository private constructor(
+class GameRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) : IGameRepository {
-
-    companion object {
-        @Volatile
-        private var instance: GameRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): GameRepository =
-            instance ?: synchronized(this) {
-                instance ?: GameRepository(remoteData, localData, appExecutors)
-            }
-    }
 
     override fun getAllGames(): Flowable<Resource<List<GameModel>>> =
         object : NetworkBoundResource<List<GameModel>, List<GameResponse>>() {

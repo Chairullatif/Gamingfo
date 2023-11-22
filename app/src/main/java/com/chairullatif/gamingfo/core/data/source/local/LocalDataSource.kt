@@ -5,15 +5,7 @@ import com.chairullatif.gamingfo.core.data.source.local.room.GameDao
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
-class LocalDataSource private constructor(private val gameDao: GameDao) {
-    companion object {
-        private var instance: LocalDataSource? = null
-
-        fun getInstance(gameDao: GameDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(gameDao)
-            }
-    }
+class LocalDataSource(private val gameDao: GameDao) {
 
     fun getAllGames(): Flowable<List<GameEntity>> = gameDao.getAllGame()
 

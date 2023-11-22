@@ -44,8 +44,6 @@ android {
     }
 }
 
-
-
 dependencies {
     val kotlin_version = "1.9.20"
     val appcompat_version = "1.1.0"
@@ -60,17 +58,15 @@ dependencies {
     val cardview_version = "1.0.0"
     val recyclerview_version = "1.1.0"
     val material_version = "1.2.1"
-    val glide_version = "4.11.0"
-
-    val room_version = "2.2.5"
-
-    val retrofit_version = "2.9.0"
-    val logging_interceptor_version = "4.9.0"
-
-    val rxjava_version = "2.2.19"
-    val rxandroid_version = "2.1.1"
-    val rxjava3_retrofit_adapter_version = "3.0.0"
-    val lifecycle_version = "2.6.2"
+    val glideVersion = "4.11.0"
+    val roomVersion = "2.2.5"
+    val retrofitVersion = "2.9.0"
+    val loggingInterceptorVersion = "4.9.0"
+    val rxjavaVersion = "2.2.19"
+    val rxandroidVersion = "2.1.1"
+    val rxjava3RetrofitAdapterVersion = "3.0.0"
+    val lifecycleVersion = "2.6.2"
+    val koinVersion = "3.5.0"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -80,19 +76,22 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation ("com.github.bumptech.glide:glide:$glide_version")
+    implementation ("com.github.bumptech.glide:glide:$glideVersion")
 
-    implementation ("androidx.room:room-runtime:$room_version")
-    kapt ("androidx.room:room-compiler:$room_version")
-    androidTestImplementation ("androidx.room:room-testing:$room_version")
+    implementation ("androidx.room:room-runtime:$roomVersion")
+    kapt ("androidx.room:room-compiler:$roomVersion")
+    androidTestImplementation ("androidx.room:room-testing:$roomVersion")
 
-    implementation ("com.squareup.retrofit2:retrofit:$retrofit_version")
-    implementation ("com.squareup.retrofit2:converter-gson:$retrofit_version")
-    implementation ("com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version")
+    implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation ("com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion")
 
-    implementation ("io.reactivex.rxjava2:rxjava:$rxjava_version")
-    implementation ("io.reactivex.rxjava2:rxandroid:$rxandroid_version")
-    implementation ("com.squareup.retrofit2:adapter-rxjava2:$retrofit_version")
-    implementation ("androidx.room:room-rxjava2:$room_version")
-    implementation ("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version")
+    implementation ("io.reactivex.rxjava2:rxjava:$rxjavaVersion")
+    implementation ("io.reactivex.rxjava2:rxandroid:$rxandroidVersion")
+    implementation ("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+    implementation ("androidx.room:room-rxjava2:$roomVersion")
+    implementation ("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycleVersion")
+
+    //Koin
+    implementation ("io.insert-koin:koin-android:$koinVersion")
 }

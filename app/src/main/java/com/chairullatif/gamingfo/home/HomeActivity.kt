@@ -5,21 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chairullatif.gamingfo.R
 import com.chairullatif.gamingfo.core.data.Resource
 import com.chairullatif.gamingfo.core.ui.GameAdapter
-import com.chairullatif.gamingfo.core.ui.ViewModelFactory
 import com.chairullatif.gamingfo.databinding.ActivityHomeBinding
 import com.chairullatif.gamingfo.detail.DetailActivity
 import com.chairullatif.gamingfo.favorite.FavoriteGameActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var gameAdapter: GameAdapter
     private lateinit var binding: ActivityHomeBinding
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +31,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        val factory = ViewModelFactory.getInstance(this)
-        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-
         homeViewModel.getListGame()
         homeViewModel.listGame.observe(this) { game ->
             if (game != null) {
@@ -56,7 +52,6 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun initView() {
