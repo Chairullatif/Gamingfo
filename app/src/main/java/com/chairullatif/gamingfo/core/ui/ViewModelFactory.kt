@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.chairullatif.gamingfo.core.di.Injection
 import com.chairullatif.gamingfo.core.domain.usecase.GameUseCase
 import com.chairullatif.gamingfo.detail.DetailGameViewModel
+import com.chairullatif.gamingfo.favorite.FavoriteViewModel
 import com.chairullatif.gamingfo.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val gameUseCase: GameUseCase) :
@@ -29,9 +30,9 @@ class ViewModelFactory private constructor(private val gameUseCase: GameUseCase)
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(gameUseCase) as T
             }
-//            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
-//                FavoriteViewModel(gameUseCase) as T
-//            }
+            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
+                FavoriteViewModel(gameUseCase) as T
+            }
             modelClass.isAssignableFrom(DetailGameViewModel::class.java) -> {
                 DetailGameViewModel(gameUseCase) as T
             }

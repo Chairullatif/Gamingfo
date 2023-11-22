@@ -13,6 +13,7 @@ import com.chairullatif.gamingfo.core.ui.GameAdapter
 import com.chairullatif.gamingfo.core.ui.ViewModelFactory
 import com.chairullatif.gamingfo.databinding.ActivityHomeBinding
 import com.chairullatif.gamingfo.detail.DetailActivity
+import com.chairullatif.gamingfo.favorite.FavoriteGameActivity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -34,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this)
         homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
+        homeViewModel.getListGame()
         homeViewModel.listGame.observe(this) { game ->
             if (game != null) {
                 when (game) {
@@ -65,10 +67,22 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        with(binding.rvGame) {
+        binding.rvGame.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = gameAdapter
         }
+
+        binding.apply {
+            ivFavorite.setOnClickListener {
+                val intent = Intent(this@HomeActivity, FavoriteGameActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getListGame()
     }
 }

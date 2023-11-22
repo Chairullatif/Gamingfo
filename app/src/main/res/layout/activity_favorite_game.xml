@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary300"
+    tools:context=".favorite.FavoriteGameActivity">
+
+    <LinearLayout
+        android:id="@+id/btn_back"
+        style="@style/ButtonBackStyle"
+        android:background="@drawable/bg_btn_back"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_left"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/Txt.Bold24"
+        android:text="Favorite"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_game"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:listitem="@layout/item_game" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
