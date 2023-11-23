@@ -18,8 +18,8 @@ class GameRepository(
     private val appExecutors: AppExecutors
 ) : IGameRepository {
 
-    override fun getAllGames(): Flowable<com.chairullatif.gamingfo.core.data.Resource<List<GameModel>>> =
-        object : com.chairullatif.gamingfo.core.data.NetworkBoundResource<List<GameModel>, List<GameResponse>>() {
+    override fun getAllGames(): Flowable<Resource<List<GameModel>>> =
+        object : NetworkBoundResource<List<GameModel>, List<GameResponse>>() {
             override fun loadFromDB(): Flowable<List<GameModel>> {
                 return localDataSource.getAllGames().map { DataMapper.mapEntitiesToDomain(it) }
             }
