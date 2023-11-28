@@ -21,7 +21,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        debug {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -47,6 +54,8 @@ dependencies {
     val loggingInterceptorVersion = "4.9.0"
 
     val lifecycleVersion = "2.6.2"
+    val sqlCipherVersion = "4.4.3"
+    val sqlite_version = "2.1.0"
 
     implementation(fileTree("libs") {
         include("*.jar")
@@ -63,4 +72,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
     implementation ("androidx.room:room-rxjava2:$roomVersion")
     api ("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycleVersion")
+
+    implementation ("net.zetetic:android-database-sqlcipher:$sqlCipherVersion")
+    implementation ("androidx.sqlite:sqlite-ktx:$sqlite_version")
 }

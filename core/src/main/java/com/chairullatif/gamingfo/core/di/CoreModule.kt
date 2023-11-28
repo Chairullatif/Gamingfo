@@ -8,6 +8,8 @@ import com.chairullatif.gamingfo.core.data.source.remote.RemoteDataSource
 import com.chairullatif.gamingfo.core.data.source.remote.network.ApiService
 import com.chairullatif.gamingfo.core.domain.repository.IGameRepository
 import com.chairullatif.gamingfo.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -20,10 +22,14 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<GameDatabase>().gameDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("gamingfo".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             GameDatabase::class.java, "Game.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 val loggingInterceptor = if (BuildConfig.DEBUG) {
