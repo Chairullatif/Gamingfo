@@ -26,11 +26,16 @@ val databaseModule = module {
         ).fallbackToDestructiveMigration().build()
     }
 }
+val loggingInterceptor = if (BuildConfig.DEBUG) {
+    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+} else {
+    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+}
 
 val networkModule = module {
     single {
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .build()

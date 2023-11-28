@@ -31,7 +31,7 @@
     <TextView
         android:id="@+id/textView"
         style="@style/Txt.Bold24"
-        android:text="Favorite"
+        android:text="@string/favorite"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"

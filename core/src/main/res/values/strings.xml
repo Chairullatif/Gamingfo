@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="something_wrong">There is something wrong</string>
+    <string name="release">Release: %s</string>
+    <string name="rating">Rating: %s</string>
+    <string name="poster_game">Poster Game</string>
 </resources>

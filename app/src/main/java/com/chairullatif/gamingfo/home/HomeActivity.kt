@@ -9,14 +9,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chairullatif.gamingfo.R
 import com.chairullatif.gamingfo.core.data.Resource
-import com.chairullatif.gamingfo.core.ui.GameAdapter
+import com.chairullatif.gamingfo.core.ui.GameItemAdapter
 import com.chairullatif.gamingfo.databinding.ActivityHomeBinding
 import com.chairullatif.gamingfo.detail.DetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var gameAdapter: GameAdapter
+    private lateinit var gameAdapter: GameItemAdapter
     private lateinit var binding: ActivityHomeBinding
     private val homeViewModel: HomeViewModel by viewModel()
 
@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
                     is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        gameAdapter.setData(game.data)
+                        gameAdapter.submitList(game.data)
                     }
 
                     is Resource.Error -> {
@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        gameAdapter = GameAdapter()
+        gameAdapter = GameItemAdapter()
         gameAdapter.onItemClick = { selectedData ->
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)

@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chairullatif.gamingfo.core.ui.GameAdapter
+import com.chairullatif.gamingfo.core.ui.GameItemAdapter
 import com.chairullatif.gamingfo.detail.DetailActivity
 import com.chairullatif.gamingfo.favorite.databinding.ActivityFavoriteGameBinding
 import com.chairullatif.gamingfo.favorite.di.favoriteModule
@@ -16,7 +16,7 @@ class FavoriteGameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteGameBinding
     private val favoriteViewModel: FavoriteViewModel by viewModel()
 
-    private lateinit var gameAdapter: GameAdapter
+    private lateinit var gameAdapter: GameItemAdapter
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +33,13 @@ class FavoriteGameActivity : AppCompatActivity() {
     private fun initViewModel() {
         favoriteViewModel.favoriteGames.observe(this) { game ->
             if (game != null) {
-                gameAdapter.setData(game)
+                gameAdapter.submitList(game)
             }
         }
     }
 
     private fun initView() {
-        gameAdapter = GameAdapter()
+        gameAdapter = GameItemAdapter()
         gameAdapter.onItemClick = { selectedData ->
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)

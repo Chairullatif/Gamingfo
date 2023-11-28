@@ -13,6 +13,7 @@
         android:layout_height="240dp"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/poster_game"
         tools:src="@tools:sample/avatars" />
 
     <LinearLayout

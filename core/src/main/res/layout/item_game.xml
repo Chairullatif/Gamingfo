@@ -19,6 +19,7 @@
             android:layout_height="200dp"
             tools:src="@tools:sample/avatars"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/poster_game"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,13 +43,13 @@
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/Txt.Bold16"
-                    android:text="GTA V: Grand Theft"
+                    tools:text="GTA V: Grand Theft"
                     android:textColor="@color/colorNeutral100" />
 
                 <TextView
                     android:id="@+id/tv_release"
                     style="@style/Txt.SemiBold14"
-                    android:text="Release: 14 Nov 2023"
+                    tools:text="Release: 14 Nov 2023"
                     android:textColor="@color/colorNeutral100" />
 
             </LinearLayout>
@@ -56,7 +57,7 @@
             <TextView
                 android:id="@+id/tv_rating"
                 style="@style/Txt.Bold16"
-                android:text="4.7"
+                tools:text="4.7"
                 android:textColor="@color/colorWarning" />
 
         </LinearLayout>
