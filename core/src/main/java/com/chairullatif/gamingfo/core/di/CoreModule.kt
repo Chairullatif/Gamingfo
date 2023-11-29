@@ -10,6 +10,7 @@ import com.chairullatif.gamingfo.core.domain.repository.IGameRepository
 import com.chairullatif.gamingfo.core.utils.AppExecutors
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -26,7 +27,7 @@ val databaseModule = module {
         val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
-            GameDatabase::class.java, "Game.db"
+            GameDatabase::class.java, "Game"
         ).fallbackToDestructiveMigration()
             .openHelperFactory(factory)
             .build()
@@ -40,10 +41,15 @@ val loggingInterceptor = if (BuildConfig.DEBUG) {
 
 val networkModule = module {
     single {
+        val hostname = "rawg.io"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/o/TPHqfOxqUVvhHmuaef0sC3tHur5b1L3XU/fDFwHJQ=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
     }
     single {
