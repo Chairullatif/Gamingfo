@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary300"
     tools:context=".detail.DetailActivity">
 
     <ImageView
@@ -106,6 +105,7 @@
         android:src="@drawable/ic_bookmark_inactive"
         android:backgroundTint="@color/primary100"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/button_favorite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

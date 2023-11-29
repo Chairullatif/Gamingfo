@@ -7,5 +7,7 @@
     <string name="amingfo">amingfo</string>
     <string name="g">G</string>
     <string name="button_favorite">Button Favorite</string>
+    <string name="release">Release: %s</string>
+    <string name="rating">⭐ %s</string>
 
 </resources>

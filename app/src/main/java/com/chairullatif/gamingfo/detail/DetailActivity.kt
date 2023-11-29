@@ -52,8 +52,8 @@ class DetailActivity : AppCompatActivity() {
                     .load(detailGame.backgroundImage)
                     .into(ivBackgroundHeader)
                 tvTitle.text = detailGame.name
-                tvRelease.text = "Release: " + detailGame.released
-                tvRating.text = "⭐" + detailGame.rating.toString()
+                tvRelease.text = getString(R.string.release, detailGame.released)
+                tvRating.text = getString(R.string.rating, detailGame.rating.toString())
 
                 btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
             }

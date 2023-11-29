@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 apply(from = "../shared_dependencies.gradle")
 android {
@@ -49,19 +50,20 @@ android {
 }
 
 dependencies {
-    val roomVersion = "2.2.5"
+    val roomVersion = "2.3.0"
     val retrofitVersion = "2.9.0"
     val loggingInterceptorVersion = "4.9.0"
 
     val lifecycleVersion = "2.6.2"
     val sqlCipherVersion = "4.4.3"
-    val sqlite_version = "2.1.0"
+    val sqliteVersion = "2.1.0"
 
     implementation(fileTree("libs") {
         include("*.jar")
     })
 
     implementation ("androidx.room:room-runtime:$roomVersion")
+//    ksp ("androidx.room:room-compiler:$roomVersion")
     kapt ("androidx.room:room-compiler:$roomVersion")
     androidTestImplementation ("androidx.room:room-testing:$roomVersion")
 
@@ -74,5 +76,5 @@ dependencies {
     api ("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycleVersion")
 
     implementation ("net.zetetic:android-database-sqlcipher:$sqlCipherVersion")
-    implementation ("androidx.sqlite:sqlite-ktx:$sqlite_version")
+    implementation ("androidx.sqlite:sqlite-ktx:$sqliteVersion")
 }

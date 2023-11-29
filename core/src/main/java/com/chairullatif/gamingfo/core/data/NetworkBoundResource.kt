@@ -1,5 +1,6 @@
 package com.chairullatif.gamingfo.core.data
 
+import android.annotation.SuppressLint
 import com.chairullatif.gamingfo.core.data.source.remote.network.ApiResponse
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -8,6 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
+@SuppressLint("CheckResult")
 abstract class NetworkBoundResource<ResultType, RequestType> {
 
     private val result = PublishSubject.create<Resource<ResultType>>()
@@ -41,6 +43,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     protected abstract fun saveCallResult(data: RequestType)
 
+    @SuppressLint("CheckResult")
     private fun fetchFromNetwork() {
 
         val apiResponse = createCall()
