@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
 }
@@ -50,7 +49,7 @@ android {
 }
 
 dependencies {
-    val roomVersion = "2.3.0"
+    val roomVersion = "2.5.0"
     val retrofitVersion = "2.9.0"
     val loggingInterceptorVersion = "4.9.0"
 
@@ -63,8 +62,7 @@ dependencies {
     })
 
     implementation ("androidx.room:room-runtime:$roomVersion")
-//    ksp ("androidx.room:room-compiler:$roomVersion")
-    kapt ("androidx.room:room-compiler:$roomVersion")
+    ksp ("androidx.room:room-compiler:$roomVersion")
     androidTestImplementation ("androidx.room:room-testing:$roomVersion")
 
     implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")
